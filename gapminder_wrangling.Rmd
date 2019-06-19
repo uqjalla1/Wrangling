@@ -32,11 +32,9 @@ Learning the filter function
 filter(gapminder, lifeExp <35) #filtering for the condition that life expectancy is over a certain age
 
 #just look at one country
-
 filter(gapminder, country == "Mexico") #use the double equals
 
 #two variables - year and country
-
 filter(gapminder, country == "Mexico", year ==2002) #add a comma then next condition
 
 #What is the average life expectency in Brazil between 1987 and 2007?
@@ -52,19 +50,48 @@ mean(y$lifeExp) #could also put in an & symbol instead of the commas
 
 ```
 
+Learning the select() function
 ```{r}
+select(gapminder, year, country, lifeExp) #data, then the column names you want to select
+
+#drop columns
+select(gapminder, -continent, -gdpPercap)
+
 
 ```
 
+Using filter() and select() together
 ```{r}
+gap_cambodia <- filter(gapminder, country == "Cambodia")
+gap_cambodia2 <- select(gap_cambodia, -continent, -lifeExp)
+```
+
+The pipe %>% operator (ctrl, shift, m)
+```{r}
+gapminder %>% head() #think of pipe %>%  as 'and then'
+
+gap_cambodia <- filter(gapminder, country == "Cambodia") %>% #filter and then select
+    select(-continent, -lifeExp)
+
+#even better way for clarity
+
+gap_cambodia <- gapminder %>% 
+  filter(country == "Cambodia") %>%
+    select(-continent, -lifeExp)
 
 ```
 
+Learn mutate() to add a new column
 ```{r}
+mutate(gapmidner, gdp = pop * gdpPercap) # same as below just different ways
 
-```
+gapminder %>% 
+  mutate(gdp = pop * gdpPercap) # new column is called gdp then tell it what to fill with
 
-```{r}
+gapminder %>% 
+  filter(continent == Asia) %>%
+  filter(year==2007) %>% 
+  mutate(p)
 
 ```
 
