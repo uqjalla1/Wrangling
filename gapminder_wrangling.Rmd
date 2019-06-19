@@ -89,9 +89,9 @@ gapminder %>%
   mutate(gdp = pop * gdpPercap) # new column is called gdp then tell it what to fill with
 
 gapminder %>% 
-  filter(continent == Asia) %>%
-  filter(year==2007) %>% 
-  mutate(p)
+  filter(continent == 'Asia', year==2007) %>% 
+  mutate(pop1 = pop/1000)
+  
 
 ```
 
