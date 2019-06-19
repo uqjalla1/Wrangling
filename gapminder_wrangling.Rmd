@@ -1,0 +1,77 @@
+---
+title: "Wrangling"
+author: "James Allan"
+date: "19 June 2019"
+output: html_document
+---
+##Data Wrangling in dplyr
+
+Libraries
+```{r}
+library(tidyverse)
+```
+
+Load data
+```{r}
+gapminder <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv")
+```
+
+Explore data
+```{r}
+head(gapminder)
+tail(gapminder)
+str(gapminder)
+
+#column names
+names(gapminder)
+ncol(gapminder)
+```
+
+Learning the filter function
+```{r}
+filter(gapminder, lifeExp <35) #filtering for the condition that life expectancy is over a certain age
+
+#just look at one country
+
+filter(gapminder, country == "Mexico") #use the double equals
+
+#two variables - year and country
+
+filter(gapminder, country == "Mexico", year ==2002) #add a comma then next condition
+
+#What is the average life expectency in Brazil between 1987 and 2007?
+y <- filter(gapminder, country == "Brazil", year > 1987) #2007 is the max so this works
+mean(y$lifeExp)
+
+#two variables but in between two values- just add two conditions
+y <- filter(gapminder, country == "Brazil", year > 1987, year < 2007) #to do inbetween
+mean(y$lifeExp) #could also put in an & symbol instead of the commas
+
+y <- filter(gapminder, country == "Brazil", year > 1987 & year < 2007) #to do inbetween
+mean(y$lifeExp) #could also put in an & symbol instead of the commas
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
